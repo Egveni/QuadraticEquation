@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class QuadraticEquationTwoRootsCasesTesting {
@@ -27,18 +28,22 @@ public class QuadraticEquationTwoRootsCasesTesting {
     @Parameterized.Parameters
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {4, 5, -1, "-1.425390529679106 0.17539052967910607"},
-                {5, -26, 5, "0.2 5.0"},
-                {8, -6, 1, "0.25 0.5"},
-                {7, 6, -1, "-1.0 0.14285714285714285"},
+                {4, 5, -1, "0.17539052967910607 -1.425390529679106"},
+                {5, -26, 5, "5.0 0.2"},
+                {8, -6, 1, "0.5 0.25"},
+                {7, 6, -1, "0.14285714285714285 -1.0"},
         });
     }
-
     @Test
-    public void TwoRootsCase() {
+    public void TwoRootCases() {
+        String result = quadraticEquation.solve(a, b, c);
 
-        assertEquals(expected, quadraticEquation.solve(a, b, c));
-        assertEquals(expected, quadraticEquation.solve(a, b, c));
-
+    if (!result.contains(" ") || result.equals("no roots")) {
+        throw new AssertionError();
     }
+         String[] actual = result.split(" ");
+        assertTrue(result.contains(actual[0]));
+        assertTrue(result.contains(actual[1]));
+
+}
 }

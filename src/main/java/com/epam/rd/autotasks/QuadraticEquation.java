@@ -18,12 +18,10 @@ public class QuadraticEquation {
         } else if (discriminant == 0) {
             double x = -b / (2 * a);
             return x + "";
-        } else{
+        } else {
             double x1 = (-b - Math.sqrt(discriminant))/(2*a);
             double x2 = (-b + Math.sqrt(discriminant))/(2*a);
-            String result = x1+" "+x2;
-            String result1 = x2+" "+x1;
-            return x1+" "+x2;
+            return String.format("%s %s", x1,x2);
         }
     }
 
